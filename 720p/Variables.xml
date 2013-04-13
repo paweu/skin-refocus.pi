@@ -1,4 +1,29 @@
 ﻿<includes>
+<!--OSD-->
+	<variable name="TVShowClearArt">
+		<value condition="Container.Content(episodes) | Container.Content(seasons)">$INFO[ListItem.Art(tvshow.clearart)]</value>
+		<value condition="!IsEmpty(ListItem.Art(clearart))">$INFO[ListItem.Art(clearart)]</value>
+		<value condition="!IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
+	</variable>
+	<variable name="PlayerArtwork">
+		<value condition="VideoPlayer.Content(episodes) + !IsEmpty(Player.Art(tvshow.clearart))">$INFO[Player.Art(tvshow.clearart)]</value>
+		<value condition="VideoPlayer.Content(episodes)">$INFO[Player.Art(tvshow.clearlogo)]</value>
+		<value condition="!IsEmpty(Player.Art(clearart))">$INFO[Player.Art(clearart)]</value>
+		<value>$INFO[Player.Art(clearlogo)]</value>
+	</variable>
+	 <variable name="PlayerPoster">
+		<value condition="VideoPlayer.Content(episodes)">$INFO[Player.Art(tvshow.poster)]</value>
+		<value>$INFO[VideoPlayer.Cover]</value>
+	</variable>
+	<variable name="PlayerThumb">
+		<!--<value condition="VideoPlayer.Content(episodes)">$INFO[Player.Art(tvshowthumb)]</value>-->
+		<value>$INFO[Player.Art(thumb)]</value>
+	</variable>
+	<variable name="PlayerLogo">
+		<value condition="VideoPlayer.Content(episodes) + !IsEmpty(Player.Art(tvshow.clearart))">$INFO[Player.Art(tvshow.clearlogo)]</value>
+		<value>$INFO[Player.Art(clearlogo)]</value>
+	</variable>
+
 <!---GLOBAL------>
 	<variable name="global_Clock.Formats">
 		<value condition="substring(system.time,AM,right)">[B]$INFO[System.Time(h),,:]$INFO[System.Time(mm)][/B]AM</value>
@@ -21,7 +46,7 @@
 		<value condition="Window.IsActive(programs)">backgrounds/programs.jpg</value>
 		<value condition="Window.IsActive(weather) + !Skin.HasSetting(fanart.weather)">backgrounds/weather.jpg</value>
 		<value condition="[Window.IsActive(picturessettings) | Window.IsActive(appearancesettings) | Window.IsActive(networksettings) | Window.IsActive(videossettings) | Window.IsActive(systemsettings) | Window.IsActive(musicsettings) | Window.IsActive(weathersettings) | Window.IsActive(programssettings) | Window.IsActive(picturessettings) | Window.IsActive(filemanager) | Window.IsActive(settings) | Window.IsActive(systeminfo) | Window.IsActive(profiles)]">backgrounds/settings.jpg</value>
-		<value condition="Window.IsActive(59)">backgrounds/skin.jpg</value>
+		<value condition="Window.IsActive(skinsettings)">backgrounds/skin.jpg</value>
 		<value condition="Window.IsActive(addonbrowser)">backgrounds/addons.jpg</value>
 		<value condition="!Control.IsVisible(56)">$INFO[ListItem.Art(fanart)]</value>
 	</variable>
@@ -73,15 +98,14 @@
 	</variable>
 	
 	
-	<!--
+	<!-->
 	<variable name="global_Info.Addon">
 		<value condition="Container.Content(movies) + !IsEmpty(ListItem.Property(ReleaseDate))">$INFO[ListItem.Property(ReleaseDate)]$INFO[ListItem.Genre, • ]</value>
 		<value condition="[Container.Content(movies) | Container.Content(tvshows)] + !IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration,, $LOCALIZE[31100]]$INFO[ListItem.Genre, • ]</value>
 		<value condition="[Container.Content(movies) | Container.Content(tvshows)] + IsEmpty(ListItem.Duration) + !IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem.Season,$LOCALIZE[20373] , - ]$INFO[ListItem.Episode,, • $LOCALIZE[20359]]$INFO[ListItem.Premiered]</value>
 		<value>$INFO[ListItem.Label2]</value>
-	</variable>
-	-->
+	</variable>-->
 	
 	<variable name="gallery_Title">
 		<value condition="Container.Content(episodes) + !SubString(ListItem.Icon,default)">$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</value>
@@ -129,8 +153,8 @@
 		<value condition="IsEmpty(ListItem.Art(fanart)) + IsEmpty(ListItem.Thumb) + Container.Content(movies)">thumbs/movie_landscape.jpg</value>
 		<value condition="IsEmpty(ListItem.Art(fanart)) + IsEmpty(ListItem.Thumb) + Container.Content(tvshows)">thumbs/tvshow_landscape.jpg</value>
 		<value condition="IsEmpty(ListItem.Art(fanart)) + IsEmpty(ListItem.Thumb) + Container.Content(artists)">thumbs/artist_landscape.png</value>
-		<value condition="Container.Content(musicvideos) + IsEmpty(ListItem.Title)">thumbs/music_landscape.jpg</value>
-		<value condition="Container.Content(episodes) + IsEmpty(ListItem.Title)">thumbs/tvshow_landscape.jpg</value>
+		<value condition="Container.Content(musicvideos) + IsEmpty(ListItem.Thumb)">thumbs/music_landscape.jpg</value>
+		<value condition="Container.Content(episodes) + IsEmpty(ListItem.Thumb)">thumbs/tvshow_landscape.jpg</value>
 		<value condition="Window.IsActive(pictures) + IsEmpty(ListItem.Thumb)">thumbs/picture_landscape.jpg</value>
 		<value condition="Container.Content(files) + IsEmpty(ListItem.Thumb)">thumbs/video_landscape.png</value>
 		<value condition="Container.Content(seasons)">$INFO[ListItem.Path]</value>
@@ -147,8 +171,9 @@
 	<variable name="thumb_Portrait.Condition">
 		<value condition="StringCompare(Container.FolderPath,plugin://plugin.video.the.trailers/)">$INFO[ListItem.Icon]</value>
 		<value condition="IsEmpty(ListItem.Thumb) + [Container.Content(movies) | Container.Content(sets)]">thumbs/movie_portrait.jpg</value>
-		<value condition="IsEmpty(ListItem.Title) + [Container.Content(tvshows) | Container.Content(seasons)]">thumbs/tvshow_portrait.jpg</value>
-		<value condition="IsEmpty(ListItem.Title) + Container.Content(actors)">thumbs/actor_portrait.jpg</value>
+		<value condition="IsEmpty(ListItem.Thumb) + [Container.Content(tvshows) | Container.Content(seasons)]">thumbs/tvshow_portrait.jpg</value>
+		<value condition="IsEmpty(ListItem.Thumb) + Container.Content(actors)">thumbs/actor_portrait.jpg</value>
+		<value condition="!IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
 		<value>$INFO[ListItem.Art(poster)]</value>
 	</variable>
 	<variable name="thumb_Portrait.Wide">
@@ -162,7 +187,6 @@
 		<value condition="!IsEmpty(ListItem.Title) + Container.Content(tvshows) + IsEmpty(ListItem.Property(Fanart_Image))">thumbs/tvshow_landscape.jpg</value>
 		<value>$INFO[ListItem.Icon]</value>
 	</variable>
-	
 	<variable name="thumb_Square.Condition">
 		<value condition="Container.Content(albums) + IsEmpty(ListItem.Thumb)">thumbs/album.png</value>
 		<value condition="Container.Content(artists) + IsEmpty(ListItem.Thumb)">thumbs/artist.png</value>
@@ -408,4 +432,29 @@
 		<value condition="ListItem.IsRecording">pvr/status_recording.png</value>
 		<value>pvr/status_none.png</value>
 	</variable>
+	
+<!---WIDGETS------>	
+	<variable name="tvshows_posters">
+		<value condition="Skin.HasSetting(home.widgets.watchlist.tvshows)">$LOCALIZE[32209]</value>
+		<value condition="Skin.HasSetting(home.widgets.watchlistrecent.tvshows)">$LOCALIZE[32059]</value>
+		<value>$LOCALIZE[32209]</value>
+	</variable>
+	<variable name="tvshows_fanart">
+		<value condition="Skin.HasSetting(home.widgets.watchlist.tvshows)">$LOCALIZE[32210]</value>
+		<value condition="Skin.HasSetting(home.widgets.watchlistrecent.tvshows)">$LOCALIZE[32205]</value>
+		<value>$LOCALIZE[32210]</value>
+	</variable>
+	<variable name="tvshows_homemenu">
+		<value condition="!Skin.HasSetting(home.widgets.tvmovies) + Control.HasFocus(80081) + Skin.HasSetting(home.widgets) + !Skin.HasSetting(home.widgets.tvmovies)">$LOCALIZE[32051]</value>
+		<value condition="!Skin.HasSetting(home.widgets.tvmovies) + Control.HasFocus(80091) + Skin.HasSetting(home.widgets) + !Skin.HasSetting(home.widgets.tvmovies)">$LOCALIZE[32052]</value>
+		<value>$LOCALIZE[3]</value>
+	</variable>
+	<variable name="tvshows_homemenu_tvshows">
+		<value condition="Control.HasFocus(8008) + Skin.HasSetting(home.widgets) + Skin.HasSetting(home.widgets.watchlistrecent) + Skin.HasSetting(home.widgets.recentpostersdouble)">$LOCALIZE[32051]</value>
+		<value condition="Control.HasFocus(8009) + Skin.HasSetting(home.widgets) + Skin.HasSetting(home.widgets.watchlistrecent) + Skin.HasSetting(home.widgets.watchlistpostersdouble) + Skin.HasSetting(home.widgets.recentpostersdouble)">$LOCALIZE[32052]</value>
+		<value>$LOCALIZE[20343]</value>
+	</variable>
+	
+	
+	
 </includes>

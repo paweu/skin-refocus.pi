@@ -97,7 +97,7 @@
 						<height>244</height>
 						<label>$INFO[ListItem.Plot]</label>
 							<font>descriptionbig</font>
-						<visible>[[Skin.HasSetting(view.list.fanart) + [Container.Content(movies) | Container.Content(tvshows)]] | [Container.Content(episodes) + !IsEmpty(ListItem.Title)] | Container.Content(musicvideos)] + !SubString(ListItem.Icon,default | SubString(Container.FolderPath,plugin.video.rtmpGUIplus )</visible>
+						<visible>[[Skin.HasSetting(view.list.fanart) + [Container.Content(movies) | Container.Content(tvshows)]] | [Container.Content(episodes) + !IsEmpty(ListItem.Title)] | Container.Content(musicvideos)] + !SubString(ListItem.Icon,default) | SubString(Container.FolderPath,plugin.video.rtmpGUIplus)</visible>
 					</control>
 					<control type="textbox">
 						<width>525</width>
@@ -155,7 +155,7 @@
 					<control type="image">
 						<width>580</width>
 						<height>625</height>
-						<texture background="true">$VAR[thumb_Portrait.Condition]</texture>
+						<texture background="true">$INFO[ListItem.Thumb]</texture>
 						<bordertexture border="31" width="400" height="315">frames/frame_Square.png</bordertexture>
 						<bordersize>22</bordersize>
 						<aspectratio align="right" aligny="top">keep</aspectratio>

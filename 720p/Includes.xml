@@ -248,6 +248,7 @@
 			</control>
 			<control type="label">
 				<posx>25r</posx>
+				<posy>28</posy>
 				<label>$INFO[System.Date(DDD)] $INFO[System.Date(d)] $INFO[System.Date(MMM)]</label>
 				<shadowcolor>black</shadowcolor>
 				<include>toast_Bottom</include>
@@ -255,6 +256,7 @@
 			</control>
 			<control type="label">
 				<posx>25r</posx>
+				<posy>28</posy>
 				<label>$INFO[System.Date(DDD)] $INFO[System.Date(d)] $INFO[System.Date(MMM)]</label>
 				<shadowcolor>black</shadowcolor>
 				<include>toast_Bottom_Home</include>
@@ -643,6 +645,11 @@
 		<aligny>top</aligny>
 		<include>autoscroll-plot</include>
 	</include>
+	<include name="description_Home">
+		<textcolor>Color7</textcolor>
+		<font>regular.DescriptionSmaller</font>
+		<aligny>top</aligny>
+	</include>
 
 <!---BUTTONS------>
 	<!--contextButton-->
@@ -767,7 +774,7 @@
 		<height>32</height>
 		<texture>overlays/OverlayResumable.png</texture>
 		<aspect>keepaspect</aspect>
-		<!--<visible>[Container.Content(movies) | Container.Content(episodes)] + ListItem.IsResumable + Skin.HasSetting(overlay.resumable) + IsEmpty(ListItem.Property(ReleaseDate) + !SubString(Container.FolderPath,special://skin/playlists/Movies In Progress.xsp)</visible>-->
+		<!--<visible>[Container.Content(movies) | Container.Content(episodes)] + ListItem.IsResumable + Skin.HasSetting(overlay.resumable) + IsEmpty(ListItem.Property(ReleaseDate)) + !SubString(Container.FolderPath,special://skin/playlists/Movies In Progress.xsp)</visible>-->
 		<visible>Skin.HasSetting(watched.original) + !Skin.HasSetting(watched.alternative) + ListItem.IsResumable + Skin.HasSetting(overlay.resumable) + !SubString(Container.FolderPath,special://skin/playlists/Movies In Progress.xsp)</visible>	
 	</include>
 	<include name="overlay_Resumable-list">
@@ -1275,7 +1282,7 @@
 					<posy>55</posy>
 					<visible>Player.HasVideo + ![VideoPlayer.Content(musicvideos) | VideoPlayer.Content(files)]</visible>
 					<control type="textbox" id="1">
-						<height>55</height>
+						<height>64</height>
 						<width>1090</width>
 						<label>$VAR[player_Plot.Condition]</label>
 						<textcolor>Color3</textcolor>
@@ -1894,7 +1901,7 @@
 		<include>autoscroll-line</include>
 		<animation effect="slide" end="0,-3" condition="Skin.HasSetting(numitems.enable)">Conditional</animation>
 		<animation effect="slide" end="25" condition="Skin.HasSetting(indicator.enable) + Control.IsVisible(6100)">Conditional</animation>
-		<visible>!Control.IsVisible(5411) + !Control.IsVisible(54111) + !Window.IsActive(busydialog) + ![Control.IsVisible(9900) | Control.IsVisible(531) | Control.IsVisible(550) | Control.IsVisible(551) | Window.IsActive(movieinformation) | Window.IsActive(musicinformation)]</visible>
+		<visible>!Window.IsActive(extendedprogressdialog)  + !Control.IsVisible(5411) + !Control.IsVisible(54111) + !Window.IsActive(busydialog) + ![Control.IsVisible(9900) | Control.IsVisible(531) | Control.IsVisible(550) | Control.IsVisible(551) | Window.IsActive(movieinformation) | Window.IsActive(musicinformation)]</visible>
 	</include>
 	<include name="windowTitle_Video">
 		<control type="label">
@@ -2235,7 +2242,9 @@
         <scroll>false</scroll>
     </include>
 
-
+<include name="screenwidth">
+</include>
+    
 	<include name="OSDFwRwLabelMinimal">
         <posx>1083</posx>
         <font>description</font>
@@ -2366,6 +2375,75 @@
 </include>
 
 
+
+<!--NOW PLAYING-->
+	<include name="NowPlaying">
+		<control type="group">
+			<posx>0</posx>
+			<posy>0</posy>
+	 <!-- Music -->
+			<control type="group">
+				<control type="group">
+				<include>toggle_ToastMute</include>
+				<animation type="Conditional" reversible="false" condition="MusicPlayer.HasNext" loop="true">
+						<effect type="fade" start="0" end="100" time="500" delay="0" />
+						<effect type="fade" start="100" end="0" time="500" delay="10000" />
+						<effect type="fade" start="100" end="0" time="500" delay="20000" />
+					</animation>
+					<control type="label" id="200">
+						<posx>130r</posx>
+						<width>250</width>
+						<label>$INFO[MusicPlayer.Title]</label>
+						<include>toast_Top</include>
+						<include>autoscroll-line</include>
+					</control>
+					<control type="label" id="201">
+						<posx>130r</posx>
+						<posy>28</posy>
+						<width>250</width>
+						<label>$INFO[MusicPlayer.Artist]</label>
+						<include>toast_Bottom</include>
+						<include>autoscroll-line</include>
+					</control>
+					<control type="label" id="1">
+						<posx>120r</posx>
+						<label>$INFO[MusicPlayer.TimeRemaining(mm:ss)]</label>
+						<include>toast_Side</include>
+					</control>
+				</control>
+				<control type="group">
+				<visible>MusicPlayer.HasNext</visible>
+					<animation type="Conditional" reversible="false" condition="MusicPlayer.HasNext" loop="true">
+						<effect type="fade" start="0" end="100" time="500" delay="10500" />
+						<effect type="fade" start="100" end="0" time="500" delay="20000" />
+					</animation>
+					<control type="label">
+						<posx>120r</posx>
+						<posy>0</posy>
+						<width>140</width>
+						<height>37</height>
+						<label>$LOCALIZE[209]...</label>
+						<include>toast_Side</include>
+					</control>
+					<control type="label" id="200">
+						<posx>130r</posx>
+						<width>250</width>
+						<label>$INFO[MusicPlayer.offset(1).Title]</label>
+						<include>toast_Top</include>
+						<include>autoscroll-line</include>
+					</control>
+					<control type="label" id="201">
+						<posx>130r</posx>
+						<posy>28</posy>
+						<width>250</width>
+						<label>$INFO[MusicPlayer.offset(1).Artist]</label>
+						<include>toast_Bottom</include>
+						<include>autoscroll-line</include>
+					</control>
+				</control>
+			</control>
+		</control>
+	</include>
 	
 
 <!---INTRO------>

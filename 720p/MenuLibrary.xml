@@ -664,7 +664,7 @@
 				<control type="group">
 					<width>220</width>
 					<height>42</height>
-					<visible>[Container.Content(tvshows) | Container.Content(movies)] + Skin.HasSetting(banners.enable) + !SubString(Container.FolderPath,plugin://)</visible>
+					<visible>[Container.Content(tvshows) | Container.Content(movies) |  Container.Content(seasons)] + Skin.HasSetting(banners.enable) + !SubString(Container.FolderPath,plugin://)</visible>
 					<control type="button" id="413">
 						<label>$LOCALIZE[31004]</label>
 						<onclick>Container.SetViewMode(54)</onclick>

@@ -21,7 +21,7 @@
 				<aspectratio align="left">stretch</aspectratio>
 				<texture border="1">home/menuSelectOriginal.png</texture>
 				<include>home_ListScroll</include>
-				<animation effect="fade" start="100" end="50" time="350" condition="System.IdleTime(5)">Conditional</animation>
+				<animation effect="fade" start="100" end="50" time="350" condition="System.IdleTime(5) + !Skin.HasSetting(home.menuselect.disablefading)">Conditional</animation>
 				<visible>!Control.HasFocus(888) + !Skin.HasSetting(home.menuselect.realaska)</visible>
 			</control>
 			<control type="image">
@@ -31,7 +31,7 @@
 				<aspectratio align="left">stretch</aspectratio>
 				<texture border="1">home/menuSelectReAlaska.png</texture>
 				<include>home_ListScroll</include>
-				<animation effect="fade" start="100" end="50" time="350" condition="System.IdleTime(5)">Conditional</animation>
+				<animation effect="fade" start="100" end="50" time="350" condition="System.IdleTime(5) + !Skin.HasSetting(home.menuselect.disablefading)">Conditional</animation>
 				<visible>!Control.HasFocus(888) + Skin.HasSetting(home.menuselect.realaska)</visible>
 			</control>
 			<!--
@@ -99,14 +99,16 @@
 		<loop>yes</loop>
 		<timeperimage>slideshow_Timer</timeperimage>
 		<fadetime>fadetime_Slideshow</fadetime>
-		<animation type="WindowOpen" condition="Window.Previous(startup)">
-			<effect type="fade" start="0" end="100" time="600" delay="0" />
+		<animation type="WindowOpen" condition="!Window.Previous(startup)">
+			<effect type="zoom" time="transition_Open" center="auto" start="130"  end="100" tween="cubic" easing="out" reversible="false"/>
+			<effect type="fade" time="transition_Open" start="0" tween="cubic" easing="out" end="100" reversible="false"/>
 		</animation>
 		<animation type="WindowClose">
-			<effect type="fade" start="100" end="0" time="200" delay="0" />
+			<effect type="zoom" time="transition_Close" center="auto" start="100" end="130"  tween="cubic" easing="in" reversible="false" />
+			<effect type="fade" time="transition_Close" start="100" tween="cubic" easing="in" end="0" />
 		</animation>
-		<animation type="WindowOpen" condition="!Window.Previous(startup)">
-			<effect type="fade" start="0" end="100" time="200" delay="0" />
+		<animation type="WindowOpen" condition="Window.Previous(startup)">
+			<effect type="fade" start="0" end="100" time="600" delay="0" />
 		</animation>
 	</include>
 </includes>
