@@ -54,6 +54,12 @@
 			<size>28</size>
 			<style>lowercase</style>
 		</font>
+		<font>
+			<name>light.HMenu</name>
+			<filename>Ubuntu-L.ttf</filename>
+			<size>28</size>
+		</font>
+		
 
 		<font>
 			<name>dialog.Title</name>
@@ -567,6 +573,11 @@
 			<filename>Light.ttf</filename>
 			<size>28</size>
 			<style>uppercase</style>
+		</font>
+		<font>
+			<name>light.HMenu</name>
+			<filename>Light.ttf</filename>
+			<size>28</size>
 		</font>
 		<font>
 			<name>light.ColumnHeader</name>
@@ -1086,6 +1097,12 @@
 		<font>
 			<name>light.Title</name>
 			<filename>Light.ttf</filename>
+			<size>28</size>
+			<style>uppercase</style>
+		</font>
+		<font>
+			<name>light.HMenu</name>
+			<filename>LightCaps.ttf</filename>
 			<size>28</size>
 			<style>uppercase</style>
 		</font>
@@ -1611,6 +1628,11 @@
 			<filename>LightAlt.ttf</filename>
 			<size>28</size>
 			<style>uppercase</style>
+		</font>
+		<font>
+			<name>light.HMenu</name>
+			<filename>LightAlt.ttf</filename>
+			<size>28</size>
 		</font>
 		<font>
 			<name>light.ColumnHeader</name>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Language file translated with Team XBMC Translator-->
 <!--Translator: Rafał Wójcik-->
 <!--Email: rafal.wojcik@gmail.com-->
@@ -238,4 +238,5 @@ Rozważ możliwość wsparcia finansowego twórców XBMC.
   <string id="31988">Odtwórz ponownie</string>
   <string id="31990">Nagrania</string>
   <string id="31991">Zastosuj</string>
+  <string id="32302">Włącz poziome menu główne</string>
 </strings>

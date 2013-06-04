@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <strings>
 <string id="31000">
 [COLOR=Color2][B][UPPERCASE]Skin Designer and Developer[/UPPERCASE][/B][/COLOR]
@@ -447,6 +447,7 @@ Please consider supporting the development of XBMC by making a donation.
 <!--Home Menu-->
 <string id="32300">Disable Left Shade on Home Menu</string>
 <string id="32301">Disable Left to Search on Home Menu</string>
+<string id="32302">Enable horizontal Home Menu</string>
 
 <!--alternate watched icons-->
 <string id="32400">Show Unwatched Overlays</string>

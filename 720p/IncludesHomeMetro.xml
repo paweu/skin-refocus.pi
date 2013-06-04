@@ -1,0 +1,231 @@
+<includes>
+
+	<include name="backgroundPushDown">
+		<posy>60</posy>
+	</include>
+	
+	<include name="HomeMenuMetro">
+		<!-- top overlay -->
+		<control type="group">
+			<!-- white background to remove transparency -->
+			<!-- TODO: provide fully opaque versions of background.png for every theme -->
+			<control type="image">
+				<include>screen_Dimensions</include>
+				<texture background="true" diffuse="frames/reloaded-diff-top70.png">frames/reloaded-diff-top70.png</texture>
+				<aspectratio scalediffuse="false" >stretch</aspectratio>
+				<visible>ControlGroup(8004).HasFocus()</visible>
+			</control>		
+			<!-- theme background -->
+			<control type="image">
+				<include>screen_Dimensions</include>
+				<texture fallback="empty" background="true" diffuse="frames/reloaded-diff-top70.png">backgrounds/background.png</texture>
+				<aspectratio>scale</aspectratio>
+			</control>	
+			<animation type="WindowOpen" condition="Window.Previous(2999)">
+				<effect type="fade" start="0" end="100" time="600" delay="0" />
+			</animation>
+			<animation type="WindowOpen" condition="!Window.Previous(2999)">
+				<effect type="fade" start="0" end="100" time="200" delay="0" />
+			</animation>
+			<animation type="WindowClose">
+				<effect type="fade" start="100" end="0" time="200" delay="0" />
+			</animation>
+		</control>	
+		
+		<control type="wraplist" id="9000">
+			<focusposition>1</focusposition>
+			<posy>40</posy>
+			<posx>0</posx>
+			<width>1100</width>
+			<!--<width>1280</width>-->
+			<height>100</height>
+			<onleft>9000</onleft>
+			<onright>9000</onright>
+			<ondown>1100</ondown>
+			<onup condition="Skin.HasSetting(home.searchleft)">8004</onup>
+			<onup condition="!Skin.HasSetting(home.searchleft)">RunAddon(script.globalsearch)</onup>
+			<onup>Skin.SetString(HomeShowPlot,)</onup>
+			<ondown>Skin.SetString(HomeShowPlot,)</ondown>
+			<orientation>horizontal</orientation>
+			<scrolltime tween="Cubic" easing="Out">400</scrolltime>
+			<visible allowhiddenfocus="true">![ControlGroup(4000).HasFocus() | ControlGroup(2100).HasFocus()]</visible>	
+			<include>transition_HomeMenu</include>
+				
+			<animation effect="fade" start="50" end="100" time="200" delay="0" >Focus</animation>
+			<animation effect="fade" start="100" end="50" time="200" delay="0" >Unfocus</animation>
+				
+			<itemlayout width="180" height="100">
+				<control type="label">
+					<posy>0</posy>
+					<posx>50</posx>
+					<width>180</width>
+					<height>50</height>
+					<font>light.HMenu</font>
+					<align>left</align>
+					<label>$INFO[ListItem.Label]</label>
+					<textcolor>Color4</textcolor>
+				</control>
+			</itemlayout>			
+			<focusedlayout width="180" height="100">
+				<control type="label">
+					<posy>0</posy>
+					<posx>50</posx>
+					<width>180</width>
+					<height>50</height>
+					<font>light.HMenu</font>
+					<align>left</align>
+					<textcolor>Color0</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<!--<visible>![Container(9000).HasFocus(21) | Container(9000).HasFocus(22)]</visible>-->
+				</control>
+			</focusedlayout>
+	
+			<content>
+				<include>home_MenuContent</include>			
+			</content>
+		</control>
+		
+		<include>homeSubMenuHoriz</include>
+		
+	</include>
+	
+	<!-- every submenu list -->
+	<include name="homeSubMenuHorizCommon">
+				<posy>87</posy>
+				<posx>230</posx>
+				<width>800</width>
+				<height>50</height>
+				<!--<onleft>1100</onleft>
+				<onright>1100</onright>-->
+				<onup>9000</onup>
+				<ondown>8004</ondown>
+				<orientation>horizontal</orientation>
+				<scrolltime tween="Cubic" easing="Out">400</scrolltime>
+				<itemlayout width="150" height="100">
+					<control type="label">
+						<posy>0</posy>
+						<posx>0</posx>
+						<width>150</width>
+						<height>20</height>
+						<align>left</align>
+						<label>$INFO[ListItem.Label]</label>
+						<font>smallCaps</font>
+						<textcolor>Color4</textcolor>
+					</control>
+				</itemlayout>			
+				<focusedlayout width="150" height="100">
+					<control type="label">
+						<posy>0</posy>
+						<posx>0</posx>
+						<width>150</width>
+						<height>20</height>
+						<align>left</align>
+						<label>$INFO[ListItem.Label]</label>
+						<font>smallCaps</font>
+						<textcolor>Color0</textcolor>
+					</control>
+				</focusedlayout>
+				
+	</include>
+	
+	<!-- submenu -->
+	<include name="homeSubMenuHoriz">
+		<control type="group" id="1100">
+			<!-- wrong:
+			<animation effect="fade" start="50" end="100" time="200" delay="0" >Focus</animation>
+			<animation effect="fade" start="100" end="50" time="200" delay="0" >Unfocus</animation>
+			-->
+			<animation effect="fade" start="100" end="50" time="200" condition="!ControlGroup(1100).HasFocus">Conditional</animation> 
+			<include>transition_HomeMenu</include>
+				
+			<!-- submenu content for video -->
+			<control type="list" id="1101">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1101</onleft>
+				<onright>1101</onright>
+				<include>homeSubVideo</include>
+				<visible>Container(9000).HasFocus(1) | Container(9000).HasFocus(2)</visible>
+			</control>
+			
+			<!-- submenu content for movies -->
+			<control type="list" id="1103">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1103</onleft>
+				<onright>1103</onright>
+				<include>homeSubMovies</include>
+				<visible>Container(9000).HasFocus(3) | Container(9000).HasFocus(4)</visible>
+			</control>
+			
+			<control type="list" id="1105">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1105</onleft>
+				<onright>1105</onright>
+				<include>homeSubTV</include>
+				<visible>Container(9000).HasFocus(5) | Container(9000).HasFocus(6)</visible>
+			</control>
+			
+			<control type="list" id="1107">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1107</onleft>
+				<onright>1107</onright>
+				<include>homeSubLiveTV</include>
+				<visible>Container(9000).HasFocus(7) | Container(9000).HasFocus(8)</visible>
+			</control>
+			
+			<control type="list" id="1109">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1109</onleft>
+				<onright>1109</onright>
+				<include>homeSubMusic</include>
+				<visible>Container(9000).HasFocus(9) | Container(9000).HasFocus(10)</visible>
+			</control>
+			
+			<control type="list" id="1111">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1111</onleft>
+				<onright>1111</onright>
+				<include>homeSubPictures</include>
+				<visible>Container(9000).HasFocus(11) | Container(9000).HasFocus(12)</visible>
+			</control>
+			
+			<control type="list" id="1113">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1113</onleft>
+				<onright>1113</onright>
+				<include>homeSubAddons</include>
+				<visible>Container(9000).HasFocus(13) | Container(9000).HasFocus(14)</visible>
+			</control>
+			
+			<control type="list" id="1115">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1115</onleft>
+				<onright>1115</onright>
+				<include>homeSubSystem</include>
+				<visible>Container(9000).HasFocus(15) | Container(9000).HasFocus(16)</visible>
+			</control>
+			
+			<control type="list" id="1119">
+				<include>homeSubMenuHorizCommon</include>
+				<onleft>1119</onleft>
+				<onright>1119</onright>
+				<include>homeSubDisc</include>
+				<visible>Container(9000).HasFocus(19) | Container(9000).HasFocus(21)</visible>
+			</control>
+			
+			<!-- WEATHER LABEL -->
+			<control type="label">
+				<posy>87</posy>
+				<posx>230</posx>
+				<width>800</width>
+				<height>20</height>
+				<font>smallCaps</font>
+				<align>left</align>
+				<textcolor>Color0</textcolor>
+				<label>$INFO[Weather.Temperature]$INFO[Window(Weather).Property(Location), in ,]</label>
+				<visible>Container(9000).HasFocus(17) + Weather.IsFetched</visible>
+				<animation effect="fade" tween="Quadratic" easing="Out" start="0" end="100" time="200" condition="Container(9000).HasFocus(17) + Weather.IsFetched">Conditional</animation>
+			</control>
+		</control>
+	</include>	
+
+</includes>

@@ -1,22 +1,8 @@
-﻿<includes>
-	<include name="homeSubMenu">
-		<control type="group" id="1100">
-			<posy>30</posy>
+<includes>
+
+
 <!---VIDEO SUBMENU------->
-			<control type="list" id="1110">
-				<posx>-800</posx>
-				<width>640</width>
-				<height>640</height>
-				<onback>9000</onback>
-				<onleft>9000</onleft>
-				<onright>888</onright>
-				<onup>1110</onup>
-				<ondown>1110</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime tween="Cubic" easing="Out">400</scrolltime>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
-				<visible allowhiddenfocus="true">Container(9000).HasFocus(1)</visible>
+	<include name="homeSubVideo">
 				<content>
 					<item id="1">
 						<label>$LOCALIZE[1024]</label>
@@ -113,21 +99,9 @@
             					<onclick>$INFO[Skin.String(CustomVideo.8.Path)]</onclick>
 					</item>
 				</content>
-			</control>
+	</include>
 <!---LIVE TV SUBMENU------>
-			<control type="list" id="1120">
-				<posx>-800</posx>
-				<width>900</width>
-				<height>800</height>
-				<onback>9000</onback>
-				<onleft>9000</onleft>
-				<onup>1120</onup>
-				<ondown>1120</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime>150</scrolltime>
-				<visible allowhiddenfocus="true">Container(9000).HasFocus(7)</visible>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
+	<include name="homeSubLiveTV">
 				<content>
 					<!--channels-->
 					<item id="1">
@@ -162,22 +136,9 @@
 						<visible>Skin.HasSetting(tvmenu.timers)</visible>
 					</item>
 				</content>
-			</control>
+	</include>
 <!---MUSIC SUBMENU------>
-			<control type="list" id="1130">
-				<posx>-800</posx>
-				<width>410</width>
-				<height>800</height>
-				<onback>9000</onback>
-				<onleft>9000</onleft>
-				<onright>8004</onright>
-				<onup>1130</onup>
-				<ondown>1130</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime>150</scrolltime>
-				<visible>Container(9000).HasFocus(9)</visible>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
+	<include name="homeSubMusic">
 				<content>
 					<item id="1">
 						<label>$LOCALIZE[132]</label>
@@ -244,21 +205,9 @@
             					<onclick>$INFO[Skin.String(CustomMusic.1.Path)]</onclick>
 					</item>
 				</content>
-			</control>
+			</include>
 <!---PICTURES SUBMENU------->
-			<control type="list" id="1140">
-				<posx>-800</posx>
-				<width>900</width>
-				<height>800</height>
-				<onback>9000</onback>
-				<onleft>9000</onleft>
-				<onup>1140</onup>
-				<ondown>1140</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime>150</scrolltime>
-				<visible allowhiddenfocus="true">Container(9000).HasFocus(11)</visible>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
+	<include name="homeSubPictures">
 				<content>
 					<item id="1">
 						<label>$LOCALIZE[1024]</label>
@@ -269,22 +218,9 @@
 						<onclick>ActivateWindow(Pictures,Addons)</onclick>
 					</item>
 				</content>
-			</control>
+			</include>
 <!---ADDONS SUBMENU------>
-			<control type="list" id="1150">
-				<posx>-800</posx>
-				<width>410</width>
-				<height>800</height>
-				<onback>9000</onback>
-				<onleft>9000</onleft>
-				<onright>8004</onright>
-				<onup>1150</onup>
-				<ondown>1150</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime>150</scrolltime>
-				<visible allowhiddenfocus="true">Container(9000).HasFocus(13)</visible>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
+	<include name="homeSubAddons">
 				<content>
 					<item id="1">
 						<label>$INFO[Skin.String(addonsmenu.addon1.label)]</label>
@@ -346,21 +282,9 @@
 						<visible>Skin.HasSetting(addonsmenu.programs)</visible>
 					</item>
 				</content>
-			</control>
+			</include>
 <!---SYSTEM SUBMENU------>
-			<control type="list" id="1160">
-				<posx>-800</posx>
-				<width>900</width>
-				<height>800</height>
-				<onback>9000</onback>
-				<onleft>9000</onleft>
-				<onup>1160</onup>
-				<ondown>1160</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime>150</scrolltime>
-				<visible allowhiddenfocus="true">Container(9000).HasFocus(15)</visible>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
+	<include name="homeSubSystem">
 				<content>
 					<item id="1">
 						<label>$LOCALIZE[5]</label>
@@ -393,7 +317,7 @@
 						<visible>!Skin.HasSetting(home.searchleft) | Skin.HasSetting(slideshow.home)</visible>
 					</item>
 				</content>
-			</control>
+			</include>
 <!---EXIT SUBMENU
 			<control type="list" id="1170">
 				<posx>-800</posx>
@@ -451,19 +375,7 @@
 			</control>
 		------>
 <!---DISC SUBMENU------>
-			<control type="list" id="1180">
-				<posx>-800</posx>
-				<width>900</width>
-				<height>800</height>
-				<onback>9000</onback>
-				<onleft>9000</onleft>
-				<onup>1180</onup>
-				<ondown>1180</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime>150</scrolltime>
-				<visible allowhiddenfocus="true">Container(9000).HasFocus(19)</visible>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
+	<include name="homeSubDisc">
 				<content>
 					<item id="1">
 						<description>play</description>
@@ -476,22 +388,9 @@
 						<onclick>EjectTray()</onclick>
 					</item>
 				</content>
-			</control>
+			</include>
 <!---MOVIES SUBMENU------>
-			<control type="list" id="1200">
-				<posx>-800</posx>
-				<width>410</width>
-				<height>800</height>
-				<onback>9000</onback>
-				<onright>8004</onright>
-				<onleft>9000</onleft>
-				<onup>1200</onup>
-				<ondown>1200</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime>150</scrolltime>
-				<visible allowhiddenfocus="true">Library.HasContent(movies) + Container(9000).HasFocus(3)</visible>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
+	<include name="homeSubMovies">
 				<content>
 					<item id="1">
 						<label>$LOCALIZE[1024]</label>
@@ -555,23 +454,10 @@
 						<visible>System.HasAddon(script.randommovie) + Skin.HasSetting(moviesmenu.randommovie)</visible>
 					</item>
 				</content>
-			</control>
+			</include>
 
 <!---TVSHOWS SUBMENU------>
-			<control type="list" id="1210">
-				<posx>-800</posx>
-				<width>410</width>
-				<height>800</height>
-				<onback>9000</onback>
-				<onleft>9000</onleft>
-				<onright>8004</onright>
-				<onup>1210</onup>
-				<ondown>1210</ondown>
-				<orientation>vertical</orientation>
-				<scrolltime>150</scrolltime>
-				<visible allowhiddenfocus="true">Library.HasContent(tvshows) + Container(9000).HasFocus(5)</visible>
-				<include>home_SubFocus</include>
-				<include>homeMenusLayoutOriginal</include>
+	<include name="homeSubTV">
 				<content>
 					<item id="1">
 						<label>$LOCALIZE[1024]</label>
@@ -620,7 +506,182 @@
 						<visible>System.HasAddon(script.tv.show.next.aired) + Skin.HasSetting(tvshowsmenu.guide)</visible>
 					</item>
 				</content>
+			</include>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<include name="homeSubMenu">
+		<control type="group" id="1100">
+			<posy>30</posy>
+<!---VIDEO SUBMENU------->
+			<control type="list" id="1110">
+				<posx>-800</posx>
+				<width>640</width>
+				<height>640</height>
+				<onback>9000</onback>
+				<onleft>9000</onleft>
+				<onright>888</onright>
+				<onup>1110</onup>
+				<ondown>1110</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime tween="Cubic" easing="Out">400</scrolltime>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<visible allowhiddenfocus="true">Container(9000).HasFocus(1)</visible>
+				<include>homeSubVideo</include>
+			</control>
+<!---LIVE TV SUBMENU------>
+			<control type="list" id="1120">
+				<posx>-800</posx>
+				<width>900</width>
+				<height>800</height>
+				<onback>9000</onback>
+				<onleft>9000</onleft>
+				<onup>1120</onup>
+				<ondown>1120</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime>150</scrolltime>
+				<visible allowhiddenfocus="true">Container(9000).HasFocus(7)</visible>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<include>homeSubLiveTV</include>
+			</control>
+<!---MUSIC SUBMENU------>
+			<control type="list" id="1130">
+				<posx>-800</posx>
+				<width>410</width>
+				<height>800</height>
+				<onback>9000</onback>
+				<onleft>9000</onleft>
+				<onright>8004</onright>
+				<onup>1130</onup>
+				<ondown>1130</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime>150</scrolltime>
+				<visible>Container(9000).HasFocus(9)</visible>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<include>homeSubMusic</include>
+			</control>
+<!---PICTURES SUBMENU------->
+			<control type="list" id="1140">
+				<posx>-800</posx>
+				<width>900</width>
+				<height>800</height>
+				<onback>9000</onback>
+				<onleft>9000</onleft>
+				<onup>1140</onup>
+				<ondown>1140</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime>150</scrolltime>
+				<visible allowhiddenfocus="true">Container(9000).HasFocus(11)</visible>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<include>homeSubPictures</include>
+			</control>
+<!---ADDONS SUBMENU------>
+			<control type="list" id="1150">
+				<posx>-800</posx>
+				<width>410</width>
+				<height>800</height>
+				<onback>9000</onback>
+				<onleft>9000</onleft>
+				<onright>8004</onright>
+				<onup>1150</onup>
+				<ondown>1150</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime>150</scrolltime>
+				<visible allowhiddenfocus="true">Container(9000).HasFocus(13)</visible>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<include>homeSubAddons</include>
+			</control>
+<!---SYSTEM SUBMENU------>
+			<control type="list" id="1160">
+				<posx>-800</posx>
+				<width>900</width>
+				<height>800</height>
+				<onback>9000</onback>
+				<onleft>9000</onleft>
+				<onup>1160</onup>
+				<ondown>1160</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime>150</scrolltime>
+				<visible allowhiddenfocus="true">Container(9000).HasFocus(15)</visible>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<include>homeSubSystem</include>
+			</control>
+<!---EXIT SUBMENU
+<!---DISC SUBMENU------>
+			<control type="list" id="1180">
+				<posx>-800</posx>
+				<width>900</width>
+				<height>800</height>
+				<onback>9000</onback>
+				<onleft>9000</onleft>
+				<onup>1180</onup>
+				<ondown>1180</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime>150</scrolltime>
+				<visible allowhiddenfocus="true">Container(9000).HasFocus(19)</visible>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<include>homeSubDisc</include>
+			</control>
+<!---MOVIES SUBMENU------>
+			<control type="list" id="1200">
+				<posx>-800</posx>
+				<width>410</width>
+				<height>800</height>
+				<onback>9000</onback>
+				<onright>8004</onright>
+				<onleft>9000</onleft>
+				<onup>1200</onup>
+				<ondown>1200</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime>150</scrolltime>
+				<visible allowhiddenfocus="true">Library.HasContent(movies) + Container(9000).HasFocus(3)</visible>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<include>homeSubMovies</include>
+			</control>
+
+<!---TVSHOWS SUBMENU------>
+			<control type="list" id="1210">
+				<posx>-800</posx>
+				<width>410</width>
+				<height>800</height>
+				<onback>9000</onback>
+				<onleft>9000</onleft>
+				<onright>8004</onright>
+				<onup>1210</onup>
+				<ondown>1210</ondown>
+				<orientation>vertical</orientation>
+				<scrolltime>150</scrolltime>
+				<visible allowhiddenfocus="true">Library.HasContent(tvshows) + Container(9000).HasFocus(5)</visible>
+				<include>home_SubFocus</include>
+				<include>homeMenusLayoutOriginal</include>
+				<include>homeSubTV</include>
 			</control>
 		</control>
 	</include>
+	
+	
+	
+	
+	
+	
 </includes>

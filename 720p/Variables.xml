@@ -384,7 +384,7 @@
 		<value condition="VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos) | VideoPlayer.Content(files)">$INFO[VideoPlayer.Title]</value>
 	</variable>
 	<variable name="osd.Title.Info">
-		<value condition="Window.IsActive(visualisation) | Window.IsActive(slideshow)">$INFO[MusicPlayer.Title]</value>
+		<value condition="Player.HasAudio">$INFO[MusicPlayer.Title]</value>
 		<value condition="VideoPlayer.Content(livetv)">$INFO[VideoPlayer.ChannelNumber,,. ]$INFO[VideoPlayer.Title]</value>
 		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle,,: ][COLOR=Color3]$INFO[VideoPlayer.Title][/COLOR]</value>
 		<value condition="VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos) | VideoPlayer.Content(files)">$INFO[VideoPlayer.Title]</value>
@@ -396,7 +396,7 @@
 		<value condition="VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos) | VideoPlayer.Content(files)">$INFO[VideoPlayer.Title]</value>
 	</variable>
 	<variable name="osd.Info">
-		<value condition="Window.IsActive(visualisation) | Window.IsActive(slideshow)">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album, • ]$INFO[MusicPlayer.Year, • ]</value>
+		<value condition="Player.HasAudio">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album, • ]$INFO[MusicPlayer.Year, • ]</value>
 		<value condition="VideoPlayer.Content(movies)">$INFO[VideoPlayer.Genre,, • ]$INFO[VideoPlayer.Year]</value>
 		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,$LOCALIZE[20373] , -] $INFO[VideoPlayer.Episode,$LOCALIZE[20359] ]</value>
 		<value condition="VideoPlayer.Content(livetv)">$INFO[VideoPlayer.ChannelName,, • ]$INFO[VideoPlayer.NextTitle,$LOCALIZE[209]: ] ($INFO[VideoPlayer.Endtime])</value>
@@ -448,14 +448,14 @@
 		<value>$LOCALIZE[32210]</value>
 	</variable>
 	<variable name="tvshows_homemenu">
-		<value condition="!Skin.HasSetting(home.widgets.tvmovies) + Control.HasFocus(80081) + Skin.HasSetting(home.widgets) + !Skin.HasSetting(home.widgets.tvmovies)">$LOCALIZE[32051]</value>
-		<value condition="!Skin.HasSetting(home.widgets.tvmovies) + Control.HasFocus(80091) + Skin.HasSetting(home.widgets) + !Skin.HasSetting(home.widgets.tvmovies)">$LOCALIZE[32052]</value>
+		<value condition="!Skin.HasSetting(home.metro) + !Skin.HasSetting(home.widgets.tvmovies) + Control.HasFocus(80081) + Skin.HasSetting(home.widgets) + !Skin.HasSetting(home.widgets.tvmovies)">$LOCALIZE[32051]</value>
+		<value condition="!Skin.HasSetting(home.metro) + !Skin.HasSetting(home.widgets.tvmovies) + Control.HasFocus(80091) + Skin.HasSetting(home.widgets) + !Skin.HasSetting(home.widgets.tvmovies)">$LOCALIZE[32052]</value>
 		<value condition="Control.HasFocus(600) + [Container(9000).HasFocus(1) | Container(9000).HasFocus(2)]">$LOCALIZE[208]</value>
 		<value>$LOCALIZE[3]</value>
 	</variable>
 	<variable name="tvshows_homemenu_tvshows">
-		<value condition="Control.HasFocus(8008) + Skin.HasSetting(home.widgets) + Skin.HasSetting(home.widgets.watchlistrecent) + Skin.HasSetting(home.widgets.recentpostersdouble)">$LOCALIZE[32051]</value>
-		<value condition="Control.HasFocus(8009) + Skin.HasSetting(home.widgets) + Skin.HasSetting(home.widgets.watchlistrecent) + Skin.HasSetting(home.widgets.watchlistpostersdouble) + Skin.HasSetting(home.widgets.recentpostersdouble)">$LOCALIZE[32052]</value>
+		<value condition="!Skin.HasSetting(home.metro) + Control.HasFocus(8008) + Skin.HasSetting(home.widgets) + Skin.HasSetting(home.widgets.watchlistrecent) + Skin.HasSetting(home.widgets.recentpostersdouble)">$LOCALIZE[32051]</value>
+		<value condition="!Skin.HasSetting(home.metro) + Control.HasFocus(8009) + Skin.HasSetting(home.widgets) + Skin.HasSetting(home.widgets.watchlistrecent) + Skin.HasSetting(home.widgets.watchlistpostersdouble) + Skin.HasSetting(home.widgets.recentpostersdouble)">$LOCALIZE[32052]</value>
 		<value condition="Control.HasFocus(600) + [Container(9000).HasFocus(5) | Container(9000).HasFocus(6)]">$LOCALIZE[208]</value>
 		<value>$LOCALIZE[20343]</value>
 	</variable>
@@ -562,6 +562,102 @@
 		<value condition="!IsEmpty(Skin.String(fanart.weather.image))">$INFO[Skin.String(fanart.weather.image)]</value>
 		<value condition="!IsEmpty(Skin.String(fanart.weather.singlepath))">$INFO[Skin.String(fanart.weather.singlepath)]</value>
 		<value condition="Skin.HasSetting(fanart.weather) + !IsEmpty(Skin.String(fanart.weather.path))">$INFO[Skin.String(fanart.weather.path)]/$INFO[Weather.FanartCode]</value>
+	</variable>
+	
+	
+	<!-- Home Screen List -->
+	<variable name="value_mainmenulist_title">
+		<!-- movies -->
+		<value condition="Control.HasFocus(8000)">$INFO[Container(8000).ListItem.Property(Title)] [COLOR=Color3]$INFO[Container(8000).ListItem.Property(Year),(,)][/COLOR]</value>
+		<!-- tv shows - TVShowTitle: Title -->
+		<value condition="Control.HasFocus(8001)">$INFO[Container(8001).ListItem.Property(TVshowTitle)][COLOR=Color3]$INFO[Container(8001).ListItem.Property(Title),: ][/COLOR]</value>
+		<!-- music -->
+		<value condition="Control.HasFocus(8002)">$INFO[Container(8002).ListItem.Property(Artist)][COLOR=Color3]$INFO[Container(8002).ListItem.Property(Title),: ][/COLOR]</value>
+		<!-- videos -->
+		<value condition="Control.HasFocus(80091) + !IsEmpty(Window(Home).Property(RecentMovie.1.Title))"
+			>$INFO[Container(80091).ListItem.Property(Title)] [COLOR=Color3]$INFO[Container(80091).ListItem.Property(Year),(,)][/COLOR]</value>
+		<value condition="Control.HasFocus(80091) + IsEmpty(Window(Home).Property(RecentMovie.1.Title))"
+			>$INFO[Container(80091).ListItem.Property(TVshowTitle)][COLOR=Color3]$INFO[Container(80091).ListItem.Property(Title),: ][/COLOR]</value>
+		<!-- addons -->
+		<value condition="Control.HasFocus(8005)">$INFO[Container(8005).ListItem.Property(Title)][COLOR=Color3]$INFO[Container(8005).ListItem.Property(Summary),: ,][/COLOR]</value>
+	</variable>
+	<variable name="value_mainmenulist_subtitle">
+		<value condition="Control.HasFocus(8000)">$INFO[Container(8000).ListItem.Property(Runtime),, $LOCALIZE[31100]]</value>
+		<value condition="Control.HasFocus(8001)">$INFO[Container(8001).ListItem.Property(Season),$LOCALIZE[31087] , • ]$INFO[Container(8001).ListItem.Property(Episode),$LOCALIZE[31088] ]</value>
+		<value condition="Control.HasFocus(8002)">$INFO[Container(8002).ListItem.Property(Year)]</value>
+		<value condition="Control.HasFocus(80091) + !IsEmpty(Window(Home).Property(RecentMovie.1.Title))">$INFO[Container(80091).ListItem.Property(Runtime),, $LOCALIZE[31100]]</value>
+		<value condition="Control.HasFocus(80091) + IsEmpty(Window(Home).Property(RecentMovie.1.Title))"
+			>$INFO[Container(80091).ListItem.Property(Season),$LOCALIZE[31087] , • ]$INFO[Container(80091).ListItem.Property(Episode),$LOCALIZE[31088] ]</value>
+		<value condition="Control.HasFocus(8005)">$INFO[Container(8005).ListItem.Property(Version),$LOCALIZE[31979] ]$INFO[Container(8005).ListItem.Property(Author), (,)]</value>
+	</variable>
+	
+	<!-- show logo on plot mode (bottom left corner of the fanart area)-->
+	<variable name="value_mainmenulist_logo">
+		<value condition="Control.HasFocus(8000)">$INFO[Container(8000).ListItem.Property(Art(clearlogo))]</value>
+		<value condition="Control.HasFocus(8001)">$INFO[Container(8001).ListItem.Property(Art(clearlogo))]</value>
+		<value condition="Control.HasFocus(80091) + !IsEmpty(Window(Home).Property(RecentMovie.1.Title))"
+			>$INFO[Container(80091).ListItem.Property(Art(clearlogo))]</value>
+		<value condition="Control.HasFocus(80091) + IsEmpty(Window(Home).Property(RecentMovie.1.Title))"
+			>$INFO[Container(80091).ListItem.Property(Art(clearlogo))]</value>
+	</variable>
+
+	<!-- the image on the right of the plot -->
+	<variable name="value_mainmenulist_studiologo">
+		<value condition="Control.HasFocus(8000) + !Skin.HasSetting(removelogos.enable)">$INFO[Container(8000).ListItem.Property(Studio),flags/studios/,.png]</value>
+		<value condition="Control.HasFocus(8001) + !Skin.HasSetting(removelogos.enable)">$INFO[Container(8001).ListItem.Property(Art(characterart))]</value>
+		<value condition="Control.HasFocus(80091) + !IsEmpty(Window(Home).Property(RecentMovie.1.Title)) + !Skin.HasSetting(removelogos.enable)"
+			>$INFO[Container(80091).ListItem.Property(Studio),flags/studios/,.png]</value>
+		<value condition="Control.HasFocus(80091) + IsEmpty(Window(Home).Property(RecentMovie.1.Title)) + !Skin.HasSetting(removelogos.enable)"
+			>$INFO[Container(80091).ListItem.Property(Studio),flags/networks/,.png]</value>
+		<value>STUDIO</value>
+	</variable>
+	
+	<!-- landscape-shaped  plot mode thumb -->
+	<variable name="value_mainmenulist_landscape">
+		<value condition="Control.HasFocus(8000) + Skin.HasSetting(home.widgets.fanart.movies)">$INFO[Container(8000).ListItem.Property(Art(fanart))]</value>
+		<value condition="Control.HasFocus(8001) + !Skin.HasSetting(home.widgets.posters.tvshows)">$INFO[Container(8001).ListItem.Property(Art(thumb))]</value>
+	</variable>
+	<!-- poster-shaped  plot mode thumb -->
+	<variable name="value_mainmenulist_poster">
+		<value condition="Control.HasFocus(8000) + !Skin.HasSetting(home.widgets.fanart.movies)">$INFO[Container(8000).ListItem.Property(Art(poster))]</value>
+		<value condition="Control.HasFocus(8001) + Skin.HasSetting(home.widgets.posters.tvshows)">$INFO[Container(8001).ListItem.Property(Art(poster))]</value>
+		<value condition="Control.HasFocus(80091) + !IsEmpty(Window(Home).Property(RecentMovie.1.Title))"
+			>$INFO[Container(80091).ListItem.Property(Art(poster))]</value>
+		<value condition="Control.HasFocus(80091) + IsEmpty(Window(Home).Property(RecentMovie.1.Title))"
+			>$INFO[Container(80091).ListItem.Property(Art(poster))]</value>
+	</variable>
+	
+	<!-- plot on plot mode -->
+	<variable name="value_mainmenulist_plot">
+		<value condition="Control.HasFocus(8000)">$INFO[Container(8000).ListItem.Property(Plot)]</value>
+		<value condition="Control.HasFocus(8001)">$INFO[Container(8001).ListItem.Property(Plot)]</value>
+		<value condition="Control.HasFocus(80091)">$INFO[Container(80091).ListItem.Property(Plot)]</value>
+	</variable>
+	
+	
+	
+	<variable name="value_mainmenulist_starrating">
+		<value condition="Control.HasFocus(8000) + !IntegerGreaterThan(Container(8000).ListItem.Property(Rating),1)">rating/nf-rating0.png</value>
+		<value condition="Control.HasFocus(8000) + !IntegerGreaterThan(Container(8000).ListItem.Property(Rating),2)">rating/nf-rating1.png</value>
+		<value condition="Control.HasFocus(8000) + !IntegerGreaterThan(Container(8000).ListItem.Property(Rating),4)">rating/nf-rating2.png</value>
+		<value condition="Control.HasFocus(8000) + !IntegerGreaterThan(Container(8000).ListItem.Property(Rating),6)">rating/nf-rating3.png</value>
+		<value condition="Control.HasFocus(8000) + !IntegerGreaterThan(Container(8000).ListItem.Property(Rating),8)">rating/nf-rating4.png</value>
+		<value condition="Control.HasFocus(8001) + !IntegerGreaterThan(Container(8001).ListItem.Property(Rating),1)">rating/nf-rating0.png</value>
+		<value condition="Control.HasFocus(8001) + !IntegerGreaterThan(Container(8001).ListItem.Property(Rating),2)">rating/nf-rating1.png</value>
+		<value condition="Control.HasFocus(8001) + !IntegerGreaterThan(Container(8001).ListItem.Property(Rating),4)">rating/nf-rating2.png</value>
+		<value condition="Control.HasFocus(8001) + !IntegerGreaterThan(Container(8001).ListItem.Property(Rating),6)">rating/nf-rating3.png</value>
+		<value condition="Control.HasFocus(8001) + !IntegerGreaterThan(Container(8001).ListItem.Property(Rating),8)">rating/nf-rating4.png</value>
+		<value condition="Control.HasFocus(8002) + !IntegerGreaterThan(Container(8002).ListItem.Property(Rating),1)">rating/nf-rating0.png</value>
+		<value condition="Control.HasFocus(8002) + !IntegerGreaterThan(Container(8002).ListItem.Property(Rating),2)">rating/nf-rating1.png</value>
+		<value condition="Control.HasFocus(8002) + !IntegerGreaterThan(Container(8002).ListItem.Property(Rating),4)">rating/nf-rating2.png</value>
+		<value condition="Control.HasFocus(8002) + !IntegerGreaterThan(Container(8002).ListItem.Property(Rating),6)">rating/nf-rating3.png</value>
+		<value condition="Control.HasFocus(8002) + !IntegerGreaterThan(Container(8002).ListItem.Property(Rating),8)">rating/nf-rating4.png</value>
+		<value condition="Control.HasFocus(80091) + !IntegerGreaterThan(Container(80091).ListItem.Property(Rating),1)">rating/nf-rating0.png</value>
+		<value condition="Control.HasFocus(80091) + !IntegerGreaterThan(Container(80091).ListItem.Property(Rating),2)">rating/nf-rating1.png</value>
+		<value condition="Control.HasFocus(80091) + !IntegerGreaterThan(Container(80091).ListItem.Property(Rating),4)">rating/nf-rating2.png</value>
+		<value condition="Control.HasFocus(80091) + !IntegerGreaterThan(Container(80091).ListItem.Property(Rating),6)">rating/nf-rating3.png</value>
+		<value condition="Control.HasFocus(80091) + !IntegerGreaterThan(Container(80091).ListItem.Property(Rating),8)">rating/nf-rating4.png</value>
+		<value>rating/nf-rating5.png</value>
 	</variable>
 	
 	

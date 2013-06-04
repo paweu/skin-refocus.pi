@@ -1,4 +1,4 @@
-﻿<includes>
+<includes>
 	<include file="Defaults.xml" />
 	<include file="HomeMenu.xml" />
 	<include file="HomeSubMenu.xml" />
@@ -31,6 +31,9 @@
 	<include file="ViewMovieSets.xml" /><!-- Added this view 'Movie Sets View' -->
 	<include file="custom_MovieSetsInfo.xml" />
 	<include file="IncludesHomeWidgets.xml" />
+	<include file="IncludesHomeMetro.xml" />
+	<include file="IncludesHomeWidgetsMetro.xml" />
+	<include file="IncludesWidgetsItems.xml" />
 
 
 <!---CONSTANTS------>
@@ -241,26 +244,18 @@
 			<include>toggle_ToastMute</include>
 			<visible>![Player.HasMedia + !Skin.HasSetting(overlay.enable) + !Window.IsVisible(28)] + !Control.IsVisible(56) + ![Window.IsActive(extendedprogressdialog) | Window.IsActive(infodialog) | Window.IsActive(weather) | Window.IsActive(614)] + ![Window.IsActive(pictures) + Control.IsVisible(52)]</visible>
 			<control type="label">
+				<textcolor>Color4</textcolor>
+				<font>list.Info</font>
 				<posx>25r</posx>
-				<label>$VAR[global_Clock.Formats]</label>
-				<shadowcolor>black</shadowcolor>
+				<label>$INFO[System.Date(DDD)] $INFO[System.Date(d)] $INFO[System.Date(MMM)]</label>
 				<include>toast_Top_Home</include>
 			</control>
 			<control type="label">
 				<posx>25r</posx>
 				<posy>28</posy>
-				<label>$INFO[System.Date(DDD)] $INFO[System.Date(d)] $INFO[System.Date(MMM)]</label>
-				<shadowcolor>black</shadowcolor>
+				<font>list.Info</font>
+				<label>$VAR[global_Clock.Formats]</label>
 				<include>toast_Bottom</include>
-				<visible>Skin.HasSetting(home.date) + !Skin.HasSetting(home.datewhite)</visible>
-			</control>
-			<control type="label">
-				<posx>25r</posx>
-				<posy>28</posy>
-				<label>$INFO[System.Date(DDD)] $INFO[System.Date(d)] $INFO[System.Date(MMM)]</label>
-				<shadowcolor>black</shadowcolor>
-				<include>toast_Bottom_Home</include>
-				<visible>Skin.HasSetting(home.date) + Skin.HasSetting(home.datewhite)</visible>
 			</control>
 		</control>
 	</include>
@@ -288,13 +283,13 @@
 			<visible>Skin.HasSetting(home.time) + Skin.HasSetting(home.timesmall) + [![Player.HasMedia + !Skin.HasSetting(overlay.enable) + !Window.IsVisible(28)] | SubString(Window(videolibrary).Property(TvTunesIsAlive),True)] + !Control.IsVisible(56) + ![Window.IsActive(extendedprogressdialog) | Window.IsActive(infodialog) |  Window.IsActive(614)] + ![Window.IsActive(pictures) + Control.IsVisible(52)]</visible>
 			<control type="label">
 				<posx>25r</posx>
-				<label>$VAR[global_Clock.Formats]</label>
+				<label>$INFO[System.Date(DDD)] $INFO[System.Date(d)] $INFO[System.Date(MMM)]</label>
 				<include>toast_Top</include>
 			</control>
 			<control type="label">
 				<posx>25r</posx>
 				<posy>28</posy>
-				<label>$INFO[System.Date(DDD)] $INFO[System.Date(d)] $INFO[System.Date(MMM)]</label>
+				<label>$VAR[global_Clock.Formats]</label>
 				<include>toast_Bottom</include>
 				<visible>Skin.HasSetting(home.date)</visible>
 			</control>
@@ -2554,6 +2549,7 @@
     </include>
 
 <include name="screenwidth">
+	<width>1280</width>
 </include>
     
 	<include name="OSDFwRwLabelMinimal">
