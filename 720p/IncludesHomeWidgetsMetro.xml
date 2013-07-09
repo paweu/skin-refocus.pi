@@ -185,7 +185,7 @@
 	
 	<!-- not in HomeListCommon, becouse not all lists have plot mode -->
 	<include name="HomeListTogglePlot">
-				<visible allowhiddenfocus="true">IsEmpty(Skin.String(HomeShowPlot))</visible>
+				<visible allowhiddenfocus="true">IsEmpty(Skin.String(HomeShowPlot)) | GroupControl(9000).HasFocus</visible>
 				<!-- toggle : order matters -->
 				<ondown condition="!IsEmpty(Skin.String(HomeShowPlot))">9000</ondown>
 				<ondown condition="IsEmpty(Skin.String(HomeShowPlot))">Skin.SetString(HomeShowPlot,on)</ondown>
