@@ -1,4 +1,4 @@
-﻿<window id="107">
+<window id="107">
 	<coordinates>
 		<system>1</system>
 		<posx>0</posx>
@@ -9,14 +9,14 @@
 		<control type="group">
 			<!--line 1-->
 			<control type="fadelabel" id="401">
-				<posx>470r</posx>
-				<width>400</width>
+				<posx>1270r</posx>
+				<width>1200</width>
 				<include>toast_Top</include>
 			</control>
 			<!--line 2-->
 			<control type="fadelabel" id="402">
-				<posx>470r</posx>
-				<width>400</width>
+				<posx>1270r</posx>
+				<width>1200</width>
 				<include>toast_Bottom</include>
 			</control>
 			<!--icon-->

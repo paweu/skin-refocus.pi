@@ -1,4 +1,4 @@
-﻿<window type="dialog" id="61">
+<window type="dialog" id="61">
 	<defaultcontrol always="true">100</defaultcontrol>
 	<include>dialogOpen</include>
 	<coordinates>
@@ -409,7 +409,7 @@
 						<width>557</width>
 						<onclick>Skin.ToggleSetting(moviesmenu.watchlist)</onclick>
 						<selected>Skin.HasSetting(moviesmenu.watchlist)</selected>
-						<enable>!Skin.HasSetting(watchlist.disable</enable>
+						<enable>!Skin.HasSetting(watchlist.disable)</enable>
 						<include>dialog_Radio</include>
 					</control>
 					<!--recent movies-->
