@@ -776,7 +776,15 @@
 				<visible>Skin.HasSetting(tvtunes.addon)</visible>
 				<enable>System.HasAddon(script.tvtunes)</enable>
 			</control>
-
+			<control type="radiobutton" id="807">
+				<label>$LOCALIZE[31200]</label>
+				<onclick>Skin.ToggleSetting(nextaired.addon)</onclick>
+				<selected>Skin.HasSetting(nextaired.addon)</selected>
+				<enable>System.HasAddon(script.tv.show.next.aired)</enable>
+				<visible>System.HasAddon(script.tv.show.next.aired)</visible>
+				<include>button_Settings</include>
+			</control>
+			
 		</control>
 <!---OTHER------>
 		<control type="grouplist" id="900">
