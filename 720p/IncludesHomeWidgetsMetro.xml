@@ -11,13 +11,13 @@
 					<aspectratio align="left" aligny="bottom">keep</aspectratio>
 					<texture>overlays/vignette.png</texture>
 					<include>fadeinout</include>
-					<visible>!IsEmpty(Skin.String(HomeShowPlot))</visible>
+					<visible>!IsEmpty(Window().Property(HomeShowPlot))</visible>
 				</control>
 				-->
 				
 				<!-- bottom bg -->
 				<control type="image">
-					<posy>-460</posy>
+					<posy>-435</posy>
 					<posx>0</posx>
 					<include>screen_Dimensions</include>
 					<include>fadeinout</include>
@@ -41,7 +41,7 @@
 					<posx>40</posx>
 					<posy>210</posy>
 					<height>20</height>
-					<width>1200</width>
+					<width>1000</width>
 					<label>$VAR[value_mainmenulist_title]</label>						
 					<align>left</align>
 					<font>normalCaps</font>
@@ -89,39 +89,14 @@
 				<!-- ****************************** -->
 				<!-- Plot Mode (pres down to enter) -->
 				<!-- ****************************** -->
-				<!--
-				<control type="image">
-					<description>Show logo</description>
-					<posy>-100</posy>
-					<posx>24</posx>
-					<width>298</width>
-					<height>100</height>
-					<aspectratio align="center" aligny="bottom">keep</aspectratio>
-					<texture>$VAR[value_mainmenulist_logo]</texture>
-					<include>fadeinout</include>
-					<visible>!IsEmpty(Skin.String(HomeShowPlot))</visible>
-				</control>
-				-->
-				<!-- right image -->
-				<!--
-				<control type="image">
-					<posy>20</posy>
-					<posx>970</posx>
-					<width>240</width>
-					<height>240</height>
-					<aspectratio align="center" aligny="top">keep</aspectratio>
-					<texture>$VAR[value_mainmenulist_studiologo]</texture>
-					<animation effect="fade" start="0" end="100" time="350" >Visible</animation>
-					<visible>!IsEmpty(Skin.String(HomeShowPlot))</visible>
-				</control>
-				-->
+				
 				<!-- fake listitem art landscape/poster-->
 				<control type="group">
 					<posx>0</posx>
 					<posy>20</posy>
 					<width>1280</width>
 					<height>400</height>
-					<visible>!IsEmpty(Skin.String(HomeShowPlot))</visible>
+					<visible>!IsEmpty(Window().Property(HomeShowPlot))</visible>
 					<control type="image" id="11010">
 						<posx>24</posx>
 						<posy>21</posy>
@@ -154,7 +129,7 @@
 					<posy>30</posy>
 					<width>1000</width>
 					<height>400</height>
-					<visible>!IsEmpty(Skin.String(HomeShowPlot))</visible>
+					<visible>!IsEmpty(Window().Property(HomeShowPlot))</visible>
 					<animation effect="fade" start="0" end="100" time="350" >Visible</animation>
 					<control type="textbox">
 						<posx>150</posx>
@@ -185,13 +160,13 @@
 	
 	<!-- not in HomeListCommon, becouse not all lists have plot mode -->
 	<include name="HomeListTogglePlot">
-				<visible allowhiddenfocus="true">IsEmpty(Skin.String(HomeShowPlot)) | GroupControl(9000).HasFocus</visible>
+				<visible allowhiddenfocus="true">IsEmpty(Window().Property(HomeShowPlot)) | GroupControl(9000).HasFocus</visible>
 				<!-- toggle : order matters -->
-				<ondown condition="!IsEmpty(Skin.String(HomeShowPlot))">9000</ondown>
-				<ondown condition="IsEmpty(Skin.String(HomeShowPlot))">Skin.SetString(HomeShowPlot,on)</ondown>
-				<ondown condition="!IsEmpty(Skin.String(HomeShowPlot))">Skin.SetString(HomeShowPlot,)</ondown>
-				<onup condition="IsEmpty(Skin.String(HomeShowPlot))">1100</onup>
-				<onup condition="!IsEmpty(Skin.String(HomeShowPlot))">Skin.SetString(HomeShowPlot,)</onup>
+				<ondown condition="!IsEmpty(Window().Property(HomeShowPlot))">9000</ondown>
+				<ondown condition="IsEmpty(Window().Property(HomeShowPlot))">SetProperty(HomeShowPlot,on)</ondown>
+				<ondown condition="!IsEmpty(Window().Property(HomeShowPlot))">SetProperty(HomeShowPlot,)</ondown>
+				<onup condition="IsEmpty(Window().Property(HomeShowPlot))">9000</onup>
+				<onup condition="!IsEmpty(Window().Property(HomeShowPlot))">SetProperty(HomeShowPlot,)</onup>
 	</include>
 	
 	<!-- list layout for posters -->
@@ -257,7 +232,7 @@
 							<posy>0</posy>
 							<width>266</width>
 							<height>150</height>
-							<texture background="true">$INFO[ListItem.Property(Art(thumb))]</texture>
+							<texture background="true" fallback="$INFO[ListItem.Property(Art(landscape))]">$INFO[ListItem.Property(Art(thumb))]</texture>
 							<bordertexture border="-5">frames/frame_Landscape.png</bordertexture>
 							<bordersize>5</bordersize>
 							<aspectratio align="center">keep</aspectratio>
@@ -269,8 +244,9 @@
 							<width>266</width>
 							<height>150</height>
 							<texture background="true">$INFO[ListItem.Property(Art(fanart))]</texture>
-							<bordertexture border="-5">frames/frame_Landscape.png</bordertexture>
+							<!--<bordertexture border="-5">frames/frame_Landscape.png</bordertexture>
 							<bordersize>5</bordersize>
+							-->
 							<aspectratio align="center">keep</aspectratio>
 							<visible>Skin.HasSetting(home.widgets.fanart.tvshows) | Skin.HasSetting(home.widgets.fanart.movies)</visible>
 						</control>
@@ -283,7 +259,7 @@
 							<height>150</height>
 							<fadetime>IconCrossfadeTime</fadetime>
 							<aspectratio align="center">keep</aspectratio>
-							<texture background="true">$INFO[ListItem.Property(Art(thumb))]</texture>
+							<texture background="true" fallback="$INFO[ListItem.Property(Art(landscape))]">$INFO[ListItem.Property(Art(thumb))]</texture>
 							<bordertexture border="-5">frames/frame_Landscape.png</bordertexture>
 							<bordersize>5</bordersize>
 							<animation reversible="false" effect="zoom" start="40,0,266,150" end="24,-9,298,168" time="200">focus</animation>
@@ -298,8 +274,9 @@
 							<fadetime>IconCrossfadeTime</fadetime>
 							<aspectratio align="center">keep</aspectratio>
 							<texture background="true">$INFO[ListItem.Property(Art(fanart))]</texture>
-							<bordertexture border="-5">frames/frame_Landscape.png</bordertexture>
+							<!--<bordertexture border="-5">frames/frame_Landscape.png</bordertexture>
 							<bordersize>5</bordersize>
+							-->
 							<animation reversible="false" effect="zoom" start="40,0,266,150" end="32,-9,282,168" time="200">focus</animation>
 							<animation reversible="false" effect="zoom" end="40,0,266,150" start="32,-9,282,168" time="200">unfocus</animation>
 							<visible>Skin.HasSetting(home.widgets.fanart.tvshows) | Skin.HasSetting(home.widgets.fanart.movies)</visible>
@@ -361,32 +338,71 @@
 				<visible>Library.HasContent(TVShows)  + [Container(9000).HasFocus(1) | Container(9000).HasFocus(2)] + !Skin.HasSetting(home.widgets.tvmovies) + Skin.HasSetting(home.widgets)</visible>
 				
 				<include>HomeListCommon</include>
-				
-				<control type="label">
-					<description>Latest Movies</description>
-					<posx>40</posx>
-					<posy>10</posy>
+
+				<control type="grouplist">
+					<posx>740</posx>
+					<posy>220</posy>
+					<width>500</width>
 					<height>20</height>
-					<width>450</width>
-					<label>32212</label>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<visible>!IsEmpty(Window(Home).Property(RecentMovie.1.Title))</visible>
-				</control>
-				<control type="label">
-					<description>Currently Watching</description>
-					<posx>40</posx>
-					<posy>10</posy>
-					<height>20</height>
-					<width>450</width>
-					<label>32213</label>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<visible>IsEmpty(Window(Home).Property(RecentMovie.1.Title))</visible>
-				</control>
-				 
+					<align>right</align>
+					<orientation>horizontal</orientation>
+					<itemgap>0</itemgap>
+					<visible>ControlGroup(8004).HasFocus</visible>
+					<control type="image">
+						<width>20</width>
+						<height>20</height>
+						<texture>navigation/down.png</texture>
+						<colordiffuse>Color2</colordiffuse>
+						<aspectratio>keep</aspectratio>
+						<animation effect="rotate" start="0" end="180" time="150" delay="0" center="auto" condition="!IsEmpty(Window().Property(HomeShowPlot))">Conditional</animation>
+					</control>
+					<control type="label">
+						<posy>0</posy>
+						<description>Show Plot</description>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label> $LOCALIZE[32080] • </label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>IsEmpty(Window().Property(HomeShowPlot))</visible>
+					</control>
+					<control type="label">
+						<posy>0</posy>
+						<description>Hide Plot</description>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label> $LOCALIZE[32081] • </label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>!IsEmpty(Window().Property(HomeShowPlot))</visible>
+					</control>
+					
+					<control type="label">
+						<description>Latest Movies</description>
+						<posy>0</posy>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label>32212</label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>!IsEmpty(Window(Home).Property(RecentMovie.1.Title))+ ControlGroup(8004).HasFocus</visible>
+					</control>
+					 <control type="label">
+						<description>Currently Watching</description>
+						<posy>0</posy>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label>32213</label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>IsEmpty(Window(Home).Property(RecentMovie.1.Title))+ ControlGroup(8004).HasFocus</visible>
+					</control> 
+				</control> 
+
 
 				<control type="fixedlist" id="80091">
 					<!-- <include condition="!Skin.HasSetting(home.widgets.posterstv.tvmovies)">HomeListLandscape</include>		-->		
@@ -405,30 +421,70 @@
 				
 				<include>HomeListCommon</include>
 				
-				<control type="label">
-					<description>Latest Episodes</description>
-					<posx>40</posx>
-					<posy>10</posy>
+				
+				<control type="grouplist">
+					<posx>740</posx>
+					<posy>220</posy>
+					<width>500</width>
 					<height>20</height>
-					<width>450</width>
-					<label>32051</label>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<visible>!Skin.HasSetting(home.widgets.watchlist.tvshows) + !IsEmpty(Window(Home).Property(RecentEpisode.1.Title))</visible>
+					<align>right</align>
+					<orientation>horizontal</orientation>
+					<itemgap>0</itemgap>
+					<visible>ControlGroup(8004).HasFocus</visible>
+					<control type="image">
+						<width>20</width>
+						<height>20</height>
+						<texture>navigation/down.png</texture>
+						<colordiffuse>Color2</colordiffuse>
+						<aspectratio>keep</aspectratio>
+						<animation effect="rotate" start="0" end="180" time="150" delay="0" center="auto" condition="!IsEmpty(Window().Property(HomeShowPlot))">Conditional</animation>
+					</control>
+					<control type="label">
+						<posy>0</posy>
+						<description>Show Plot</description>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label> $LOCALIZE[32080] • </label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>IsEmpty(Window().Property(HomeShowPlot))</visible>
+					</control>
+					<control type="label">
+						<posy>0</posy>
+						<description>Hide Plot</description>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label> $LOCALIZE[32081] • </label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>!IsEmpty(Window().Property(HomeShowPlot))</visible>
+					</control>
+					<control type="label">
+						<posy>0</posy>
+						<description>Latest Episodes</description>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label>32051</label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>!Skin.HasSetting(home.widgets.watchlist.tvshows) + !IsEmpty(Window(Home).Property(RecentEpisode.1.Title))</visible>
+					</control>
+					<control type="label">
+						<posy>0</posy>
+						<description>Currently Watching</description>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label>32052</label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>Skin.HasSetting(home.widgets.watchlist.tvshows) + !IsEmpty(Window(Home).Property(RecommendedEpisode.1.Title))</visible>
+					</control>
 				</control>
-				<control type="label">
-					<description>Currently Watching</description>
-					<posx>40</posx>
-					<posy>10</posy>
-					<height>20</height>
-					<width>450</width>
-					<label>32052</label>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<visible>Skin.HasSetting(home.widgets.watchlist.tvshows) + !IsEmpty(Window(Home).Property(RecommendedEpisode.1.Title))</visible>
-				</control>
+				
 				 
 				<control type="fixedlist" id="8001">
 					<include>HomeListTogglePlot</include>
@@ -447,29 +503,68 @@
 				
 				<include>HomeListCommon</include>
 				
-				<control type="label">
-					<description>Latest Movies</description>
-					<posx>40</posx>
-					<posy>10</posy>
+				<control type="grouplist">
+					<posx>740</posx>
+					<posy>220</posy>
+					<width>500</width>
 					<height>20</height>
-					<width>450</width>
-					<label>32053</label>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<visible>!Skin.HasSetting(home.widgets.watchlist.movies) + !IsEmpty(Window(Home).Property(RecentMovie.1.Title))</visible>
-				</control>
-				 <control type="label">
-					<description>Currently Watching</description>
-					<posx>40</posx>
-					<posy>10</posy>
-					<height>20</height>
-					<width>450</width>
-					<label>32052</label>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<visible>Skin.HasSetting(home.widgets.watchlist.movies) + !IsEmpty(Window(Home).Property(RecommendedMovie.1.Title))</visible>
+					<align>right</align>
+					<orientation>horizontal</orientation>
+					<itemgap>0</itemgap>
+					<visible>ControlGroup(8004).HasFocus</visible>
+					<control type="image">
+						<width>20</width>
+						<height>20</height>
+						<texture>navigation/down.png</texture>
+						<colordiffuse>Color2</colordiffuse>
+						<aspectratio>keep</aspectratio>
+						<animation effect="rotate" start="0" end="180" time="150" delay="0" center="auto" condition="!IsEmpty(Window().Property(HomeShowPlot))">Conditional</animation>
+					</control>
+					<control type="label">
+						<posy>0</posy>
+						<description>Show Plot</description>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label> $LOCALIZE[32080] • </label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>IsEmpty(Window().Property(HomeShowPlot))</visible>
+					</control>
+					<control type="label">
+						<posy>0</posy>
+						<description>Hide Plot</description>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label> $LOCALIZE[32081] • </label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>!IsEmpty(Window().Property(HomeShowPlot))</visible>
+					</control>
+					
+					<control type="label">
+						<description>Latest Movies</description>
+						<posy>0</posy>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label>32053</label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>!Skin.HasSetting(home.widgets.watchlist.movies) + !IsEmpty(Window(Home).Property(RecentMovie.1.Title))</visible>
+					</control>
+					 <control type="label">
+						<description>Currently Watching</description>
+						<posy>0</posy>
+						<height>20</height>
+						<width min="20" max="200">auto</width>
+						<label>32052</label>
+						<aligny>center</aligny>
+						<font>smallerCaps</font>
+						<textcolor>Color2</textcolor>
+						<visible>Skin.HasSetting(home.widgets.watchlist.movies) + !IsEmpty(Window(Home).Property(RecommendedMovie.1.Title))</visible>
+					</control> 
 				</control> 
 				
 				<control type="fixedlist" id="8000">
@@ -493,19 +588,20 @@
 				
 				 <control type="label">
 					<description>Latest Albums</description>
-					<posx>40</posx>
-					<posy>10</posy>
+					<posx>40r</posx>
+					<posy>220</posy>
 					<height>20</height>
 					<width>450</width>
 					<label>32054</label>
-					<align>left</align>
+					<align>right</align>
 					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<visible>!IsEmpty(Window(Home).Property(RecentAlbum.1.Title))</visible>
+					<font>smallerCaps</font>
+					<textcolor>Color2</textcolor>
+					<visible>!IsEmpty(Window(Home).Property(RecentAlbum.1.Title)) + ControlGroup(8004).HasFocus</visible>
 				</control>
 				
 				<control type="fixedlist" id="8002">
-					<onup>1100</onup>
+					<onup>9000</onup>
 					<ondown>9000</ondown>
 					<include>HomeListSquare</include>	
 					<include>WidgetRecentAlbumItems</include>
@@ -520,19 +616,20 @@
 				
 				<control type="label">
 					<description>Random Addons</description>
-					<posx>40</posx>
-					<posy>10</posy>
+					<posx>40r</posx>
+					<posy>220</posy>
 					<height>20</height>
 					<width>450</width>
 					<label>32055</label>
-					<align>left</align>
+					<align>right</align>
 					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<visible>!IsEmpty(Window(Home).Property(RandomAddon.1.Title))</visible>
+					<font>smallerCaps</font>
+					<textcolor>Color2</textcolor>
+					<visible>!IsEmpty(Window(Home).Property(RandomAddon.1.Title)) + ControlGroup(8004).HasFocus</visible>
 				</control>
 				
 				<control type="wraplist" id="8005">
-					<onup>1100</onup>
+					<onup>9000</onup>
 					<ondown>9000</ondown>
 					<include>HomeListSquare</include>	
 					<include>WidgetRandomAddonItems</include>
@@ -749,25 +846,25 @@
 				<include>HomeListCommon</include>
 				
 				<control type="label">
-					<posx>40</posx>
-					<posy>10</posy>
-					<height>20</height>
-					<width>450</width>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>smallCaps</font>
-					<include>info_Title</include>
-					<label>$INFO[Window(Weather).Property(WeatherProvider)]</label>
+					<posx>230</posx>
+					<posy>50</posy>
+					<width>210</width>
+					<align>right</align>
+					<font>normalCaps</font>
+					<textcolor>Color1</textcolor>
+					<label>$INFO[Window(Weather).Property(Location)]</label>
 				</control>
+				
 				<control type="group" id="8010">
 					
 					<control type="group">
 						<posx>20</posx>
-						<posy>75</posy>
+						<posy>79</posy>
+						
 						<control type="grouplist">
 								<posy>0</posy>
 								<orientation>vertical</orientation>
-								<itemgap>5</itemgap>
+								<itemgap>4</itemgap>
 								<control type="label">
 									<label>$LOCALIZE[402]: $INFO[Window(Weather).Property(Current.FeelsLike)]$INFO[System.TemperatureUnits]</label>
 									<width>210</width>

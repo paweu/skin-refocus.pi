@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<addon id="skin.refocus.metro" version="0.88.6" name="reFocus Metro" provider-name="Jeroen Modded by Salem Modded by Hegemon">
+	<addon id="skin.refocus.metro" version="0.88.6" name="reFocus Metro" provider-name="Jeroen Modded by Salem, Hegemon">
 	<requires>
 		<import addon="xbmc.gui" version="4.0.0"/>
 		<import addon="script.favourites" version="3.2.4"/>

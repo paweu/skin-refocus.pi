@@ -239,4 +239,12 @@ Rozważ możliwość wsparcia finansowego twórców XBMC.
   <string id="31990">Nagrania</string>
   <string id="31991">Zastosuj</string>
   <string id="32302">Włącz poziome menu główne</string>
+
+  <string id="32051">Nowe odcinki</string>
+  <string id="32052">Aktualnie oglądane</string>
+  <string id="32053">Nowe filmy</string>
+  <string id="32054">Nowe albumy</string>
+  <string id="32055">Losowe wtyczki</string>
+  <string id="32080">Pokaż opis</string>
+  <string id="32081">Ukryj opis</string>
 </strings>

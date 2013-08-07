@@ -134,7 +134,6 @@
 		
 		
 		<control type ="group"><!-- metro -->
-		<include condition="Skin.HasSetting(home.metro)">backgroundPushDown</include><!-- metro: do not cut people heads -->
 		<!-- weather fanart --->
 		
 		<!-- videos fanart --->
@@ -321,19 +320,7 @@
 			<include>transition_Toast</include>
 			<visible>Window.IsActive(extendedprogressdialog) | Window.IsActive(infodialog)</visible>
 		</control>
-	<!--time-->
-		<control type="group">
-			<include>home_Clock</include>
-			<include>fadeinout</include>
-			<include>toggle_ToastMute</include>
-			<visible>!Skin.HasSetting(home.timesmall) + Skin.HasSetting(home.time) + ![Window.IsActive(extendedprogressdialog) | Window.IsActive(infodialog)]</visible>
-		</control>	
-		<control type="group">
-			<include>home_Clock_Small</include>
-			<include>fadeinout</include>
-			<include>toggle_ToastMute</include>
-			<visible>Skin.HasSetting(home.timesmall) + Skin.HasSetting(home.time) + ![Window.IsActive(extendedprogressdialog) | Window.IsActive(infodialog)]</visible>
-		</control>
+	
 	<!--menu-->
 		
 	<!--rss feed-->
